@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>分享</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+        html,
+        body {
+            height: 100%;
+            background-color: transparent;
+        }
+    </style>
+</head>
+
+<body tapmode onclick="api.closeFrame()">
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/aui-sharebox.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+        openSharebox();
+    };
+    var sharebox = new auiSharebox();
+    function openSharebox() {
+        sharebox.init({
+            frameBounces: true, //当前页面是否弹动，（主要针对安卓端）
+            buttons: [{
+                image: '../image/temp/share/wx.png',
+                text: '微信',
+                value: 'wx' //可选
+            }, {
+                image: '../image/temp/share/wx-circle.png',
+                text: '朋友圈',
+                value: 'wx-circle'
+            }, {
+                image: '../image/temp/share/qq.png',
+                text: 'QQ好友',
+                value: 'qq'
+            }, {
+                image: '../image/temp/share/qzone.png',
+                text: 'QQ空间',
+                value: 'qq-qzone'
+            }, {
+                image: '../image/temp/share/qq-weibo.png',
+                text: 'QQ微博'
+            }, {
+                image: '../image/temp/share/sina-weibo.png',
+                text: '新浪微博'
+            }, {
+                image: '../image/temp/share/message.png',
+                text: '短信'
+            }],
+            col: 5,
+            cancelTitle: '<i tapmode onclick="api.closeFrame()" class="aui-iconfont aui-icon-close aui-font-size-16"></i>' //可选,当然也可以采用下面的方式使用图标
+                // cancelTitle:'<i class="aui-iconfont aui-icon-close aui-font-size-16"></i>'//可选
+        }, function(ret) {
+            if (ret) {
+                api.closeFrame();
+            }
+        })
+    }
+</script>
+
+</html>

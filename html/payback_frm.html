@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>收益提现</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" />
+    <style>
+    .title{
+      text-align: center;
+      margin:20px 0px;
+    }
+    .title h4{
+      font-size: 16px;
+      color:white;
+    }
+    .title p{
+      margin:20px 0px;
+      color:#eee;
+      font-size:14px;
+    }
+    .aui-card-list-header{
+      font-size: 16px;
+    }
+    .aui-card-list-content-padded{
+      font-size:12px;
+    }
+    </style>
+</head>
+<body class="aui-bg-warning">
+        <div class="title">
+            <h4><span>今日收款
+              <span class="aui-label aui-label-info aui-margin-l-2 aui-margin-r-2">5</span>
+              笔</span>,合计</h4>
+            <p>￥ <span style="font-size:24px;">278.00</span> 元</p>
+        </div>
+        <section class="aui-content-padded">
+            <div style="border-radius:5px;margin-left:20px;margin-right:20px;" class="aui-card-list">
+                <div class="aui-card-list-header">
+                    二维码收款
+                </div>
+                <div class="aui-card-list-content-padded">
+                    <p class="aui-font-size-12">无需添加好友,扫二维码向我付款</p>
+                    <div style="padding:40px;">
+                      <img src="../image/temp/ewm.png" />
+                    </div>
+                </div>
+            </div>
+        </section>
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript">
+    apiready = function () {
+        api.parseTapmode();
+    }
+    function pay(){
+      $api.toast('支付成功', '感谢您的光顾！！',1000);
+    }
+</script>
+</html>

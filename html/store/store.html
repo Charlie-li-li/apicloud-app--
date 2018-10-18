@@ -1,0 +1,236 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>首页Window</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <style>
+    header {
+        position: relative;
+        width: 100%;
+        height: 50px;
+        background-color: #e1017e;
+    }
+
+    header .left {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100px;
+        height: 50px;
+    }
+
+    header .left .arrow {
+        position: absolute;
+        bottom: 21px;
+        left: 11px;
+        width: 13px;
+        height: 8px;
+        background: url(../../image/temp/arrow_down.png);
+        background-size: 13px 8px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        -webkit-transition: 200ms;
+        transition: 200ms;
+    }
+
+    header .left .arrow.active {
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+
+    header .left .city {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 50px;
+        padding-left: 27px;
+        box-sizing: border-box;
+        line-height: 50px;
+        font-size: 14px;
+        color: #fff;
+        text-align: left;
+    }
+
+    header .center {
+        position: relative;
+        width: 100%;
+        height: 50px;
+        background: url(../../image/temp/home_title.png);
+        background-size: 74px 19px;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+
+    header .right {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 40px;
+        height: 50px;
+        background: url(../../image/temp/home_membercenter.png);
+        background-size: 30px 30px;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+
+    nav {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-flex-flow: row;
+        flex-flow: row;
+        position: relative;
+        width: 100%;
+        height: 40px;
+        background-color: #e1017e;
+    }
+
+    nav .menu {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        flex: 1;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        font-size: 13px;
+        color: #f973b8;
+        text-align: center;
+    }
+
+    nav .menu.selected {
+        font-size: 14px;
+        color: #fff;
+        font-weight: bolder;
+    }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <div class="center"></div>
+    </header>
+    <nav id="nav">
+        <div class="menu selected" tapmode="selected" onclick="fnSetNavMenuIndex(0);">美食</div>
+        <div class="menu" tapmode="selected" onclick="fnSetNavMenuIndex(1);">品牌服饰</div>
+        <div class="menu" tapmode="selected" onclick="fnSetNavMenuIndex(2);">酒店</div>
+        <div class="menu" tapmode="selected" onclick="fnSetNavMenuIndex(3);">休闲娱乐</div>
+        <div class="menu" tapmode="selected" onclick="fnSetNavMenuIndex(4);">电影旅游</div>
+        <div class="menu" tapmode="selected" onclick="fnSetNavMenuIndex(5);">更多</div>
+    </nav>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+apiready = function() {
+
+    var header = $api.byId('header');
+    var nav = $api.byId('nav');
+
+    // 实现沉浸式状态栏效果
+    $api.fixStatusBar(header);
+
+    // 计算header和nav元素的高度
+    headerH = $api.offset(header).h;
+    navH = $api.offset(nav).h;
+
+    // 获取所有的分类菜单
+    menus = $api.domAll(nav, '.menu');
+
+    // 打开首页的所有Frames
+    openFrames();
+};
+
+var framesOpened = false,
+    menus, headerH, navH, bMap, city;
+
+// 打开商品列表FrameGroup和mini购物车Frame
+function openFrames() {
+
+    // 判断这些Frame是否已经打开
+    if (framesOpened) {
+        return;
+    }
+
+    // 构造FrameGroup中的Frame数组
+    var frames = [];
+    for (var i = 0; i < menus.length; i++) {
+        frames.push({
+            name: 'store_frm_' + i,
+            url: 'store_frm.html',
+            pageParam: {
+                wareTypeIndex: i
+            }
+        });
+    }
+
+    // 打开FrameGroup
+    api.openFrameGroup({
+        name: 'storeFrameGroup',
+        scrollEnabled: true, // 支持手势滑动切换
+        rect: {
+            x: 0,
+            y: headerH + navH,
+            w: 'auto', // 自动填充所在Window的宽度
+            h: 'auto' // 自动填充所在Window的高度
+        },
+        index: 0, // 默认显示第一个Frame
+        frames: frames,
+        preload: frames.length // 预加载所有Frame
+    }, function(ret, err) {
+        // Frame切换完成的响应函数，更新分类菜单的选中状态
+        fnSetNavMenuSelected(ret.index);
+    });
+
+    // 打开mini购物车Frame
+    /*api.openFrame({
+        name: 'minicart_frame',
+        url: './minicart_frame.html',
+        rect: {
+            x: 0,
+            y: api.winHeight - 55,
+            w: 150,
+            h: 34
+        },
+        bounces: false // 关闭弹动
+    });
+
+    // 将mini购物车Frame放置在首页Window所有Frame的最上层
+    api.bringFrameToFront({
+        from: 'minicart_frame'
+    });*/
+
+    // 标记为已经打开
+    framesOpened = true;
+}
+
+// 分类菜单点击的响应函数，切换Frame
+function fnSetNavMenuIndex(index_) {
+    // 首先更新菜单选中状态
+    fnSetNavMenuSelected(index_);
+
+    // 切换FrameGroup中的当前Frame
+    api.setFrameGroupIndex({
+        name: 'storeFrameGroup',
+        index: index_,
+        scroll: true
+    });
+}
+
+// 更新分类菜单的选中状态
+function fnSetNavMenuSelected(index_) {
+    for (var i = 0; i < menus.length; i++) {
+        if (index_ == i) {
+            $api.addCls(menus[i], 'selected');
+        } else {
+            $api.removeCls(menus[i], 'selected');
+        }
+    }
+}
+
+</script>
+
+</html>

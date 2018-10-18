@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>分享</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+        html,
+        body {
+            height: 100%;
+            background-color: transparent;
+        }
+        .aui-list-item-inner {
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body tapmode onclick="api.closeFrame()">
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/aui-popup-new.js" ></script>
+<script type="text/javascript">
+    apiready = function() {
+        showPopup();
+    };
+    var popup = new auiPopup();
+    function showPopup(){
+        popup.init({
+            frameBounces:true,//当前页面是否弹动，（主要针对安卓端）
+            location:'bottom-left',//位置，top(默认：顶部中间),top-left top-right,bottom,bottom-left,bottom-right
+            buttons:[{
+                image:'../image/temp/share/wx.png',
+                text:'购买一顿10元简餐',
+                value:'wx'//可选
+            },{
+                image:'../image/temp/share/wx-circle.png',
+                text:'狠心购买一顿20元大餐',
+                value:'wx-circle'
+            },{
+                image:'../image/temp/share/qq.png',
+                text:'购买价值50元必需品购物礼包',
+                value:'qq'
+            },{
+                image:'../image/temp/share/qzone.png',
+                text:'购买今晚价值100元烛光晚餐',
+                value:'qq-qzone'
+            },{
+                image:'../image/temp/share/sina-weibo.png',
+                text:'购买价值1000元电子产品'
+            }],
+        },function(ret){
+            if(ret){
+                api.closeFrame();
+            }
+        })
+    }
+</script>
+</html>

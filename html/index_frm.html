@@ -1,0 +1,700 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>首页窗口创建</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui-slide.css" />
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/vip.css" />
+    <style type="text/css">
+        body {
+            background: white;
+        }
+
+        .title {
+            margin-top: 0px;
+            padding-top: 15px;
+            text-align: center;
+            background-color: #ffffff;
+            padding-bottom: 10px;
+        }
+
+        .title h4 {
+            font-weight: bold;
+            font-family: "微软雅黑";
+            color: #696969;
+            font-size: 15px;
+        }
+
+        .title h4 span {
+            font-weight: 200;
+        }
+
+        .title p {
+            color: #dcdcdc;
+        }
+
+        .phb {
+            position: relative;
+        }
+
+        .phb .aui-row {
+            padding-top: 15px;
+        }
+
+        .phb .aui-grid-label {
+            font-size: 12px;
+        }
+
+        .phb img {
+            border-radius: 50%;
+            margin: auto;
+        }
+
+        .phb .hg {
+            height: 40px;
+            width: 80px;
+            position: absolute;
+            background: url('../image/hg.png') no-repeat;
+            background-size: 120px 120px;
+            -moz-background-size: 120px 120px;
+            top: -5px;
+            /* 老版本的 Firefox */
+        }
+
+        .phb .n1 {
+            background-position: 0px 0px;
+        }
+
+        .phb .n2 {
+            background-position: 0px -38px;
+        }
+
+        .phb .n3 {
+            background-position: 0px -72px;
+        }
+
+        .media-object {}
+
+        .media-object li {
+            padding: 5px;
+        }
+
+        .media-object img {
+            border-radius: 10px;
+        }
+
+        .media-object a {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .media-object a div {
+            text-align: center;
+            padding-top: 5px;
+            margin: 10px auto;
+        }
+
+        .aui-tab .aui-tab-item {
+            color: #F0AD4E;
+        }
+        /*tab选中时样式*/
+
+        .aui-tab-item.aui-active {
+            color: #EC971F;
+            border-bottom: 2px solid #EC971F;
+        }
+
+        .kr-article-banner {
+            height: 160px;
+            position: relative;
+        }
+
+        .kr-article-cover {
+            height: 120px;
+            overflow: hidden;
+        }
+
+        .kr-article-title {
+            margin: 0px;
+            padding: 0px;
+            height: 80px;
+            position: absolute;
+            left: 10px;
+            bottom: 0px;
+        }
+
+        .kr-article-title .img {
+            width: 100px;
+            float: left;
+            height: 80px;
+        }
+
+        .kr-article-title .img img {
+            border-radius: 50%;
+            border: solid 1px white;
+        }
+
+        .kr-article-title .info {
+            margin-left: 102px;
+            height: 80px;
+            color: white;
+        }
+
+        .kr-article-title .info h4 {
+            font-size: 24px;
+            font-weight: 200;
+            width: 80px;
+            line-height: 46px;
+        }
+
+        .kr-article-title .info p {
+            font-family: '宋体';
+            font-size: 12px;
+        }
+
+        .aui-list-item.wechat-top {
+            background-color: #f3f3f7;
+        }
+
+        .aui-list .wechat-avatar {
+            width: 3rem;
+        }
+
+        .wechat-avatar .aui-row-padded {
+            background-color: #dddee0;
+            padding: 0.1rem;
+            border-radius: 0.2rem;
+            margin-left: -0.05rem;
+            margin-right: -0.05rem;
+        }
+
+        .wechat-avatar .aui-row-padded [class*=aui-col-xs-] {
+            padding: 0.05rem;
+        }
+
+        .wechat-avatar,
+        .wechat-avatar>img {
+            border-radius: 0.2rem;
+        }
+
+        .text-white {
+            color: #ffffff !important;
+        }
+
+        .aui-grid [class*=aui-col-] {
+            padding: 0.75rem 0;
+        }
+        .box{
+          margin-bottom: 50px;
+        }
+
+        .menberinfo{
+          text-align: left;
+          margin-left: 5px;
+        }
+        .menberinfo p{
+          font-size: 12px;
+        }
+
+        .aui-list-item-inner{
+          font-size: 12px;
+        }
+        .aui-popup{
+          margin-bottom: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--首页中的图片幻灯开始-->
+    <div class="box" id="box1">
+        <!--首页中的图片幻灯开始-->
+        <div id="aui-slide">
+            <div id="pptlist" class="aui-slide-wrap">
+                <div v-for="ppt in pptlist" class="aui-slide-node bg-dark">
+                    <img :src="ppt.picurl" />
+                </div>
+            </div>
+            <div class="aui-slide-page-wrap">
+                <!--分页容器-->
+            </div>
+        </div>
+        <!--首页中的图片幻灯结束-->
+
+        <!--排行榜开始-->
+        <div style="background-color: #FFFFFF;" class="title">
+            <h4>/ <span>排行榜</span> /</h4>
+            <p>RANKING LIST</p>
+        </div>
+        <section style="background-color: #FAF0E6;" class="phb aui-grid aui-margin-b-10">
+            <div id="mmphlist" class="aui-row">
+                <mmlistph v-for="item in phlist" v-bind:mkmodel="item" v-bind:key="item.userid"></mmlistph>
+            </div>
+        </section>
+        <p class="aui-margin-t-15 aui-margin-b-5" style="text-align:center;">
+            <a tapmode onclick="openWin('rank_win')" class="aui-btn aui-btn-sm aui-btn-warning aui-btn-outlined">查看更多排行</a>
+        </p>
+
+        <!--精品推荐开始-->
+        <div class="title">
+            <h4>/ <span>精品推荐</span> /</h4>
+            <p>RECOMMEND</p>
+        </div>
+        <ul id="mmtjlist" style="padding:0px 5px;" class="aui-content media-object">
+            <mmlist v-for="item in mmlist" v-bind:mkmodel="item" v-bind:key="item.userid"></mmlist>
+        </ul>
+    </div>
+
+    <!---->
+
+    <!--美图页面开始-->
+    <div class="box" style="display:none;" id="box2">
+      <div class="aui-searchbar" id="search">
+          <div class="aui-searchbar-input aui-border-radius">
+              <i class="aui-iconfont aui-icon-search"></i>
+              <input type="search" placeholder="请输入搜索内容" id="search-input">
+              <div class="aui-searchbar-clear-btn">
+                  <i class="aui-iconfont aui-icon-close"></i>
+              </div>
+          </div>
+          <div class="aui-searchbar-btn" tapmode>取消</div>
+      </div>
+      <div id="labelMM" class="aui-margin-t-10 aui-padded-l-10 aui-padded-r-10">
+            <span tapmode onclick="selectM(this)" style="padding:5px 8px;" class="aui-label aui-label-info aui-margin-l-5 aui-margin-b-5">最新 <i class="aui-iconfont aui-icon-correct"></i></span>
+            <lblist v-for="lb in lblist" :key="lb.id" :lbmodel="lb"></lblist>
+      </div>
+      <div style="padding:0px 5px;">
+          <ul id="tabContent" class="aui-content media-object">
+              <mmlist v-for="mm in mmlist" :key="mm._id" :mkmodel="mm"></mmlist>
+          </ul>
+      </div>
+      <div style="padding:10px;">
+        <p><div tapmode onclick="addmk()" class="aui-btn aui-btn-block aui-btn-sm aui-btn-outlined">查看更多</div></p>
+      </div>
+
+    </div>
+    <!--美图页面结束-->
+
+    <!--视频页面开始-->
+    <div class="box" style="background-color: #efeff4;display:none;" id="box3">
+        <vdlist v-for="vd in vdlist" :key="vd.vd.id" :vdmodel="vd"></vdlist>
+    </div>
+    <!--视频页面结束-->
+
+    <!--消息页面开始-->
+    <div class="box" style="background-color: #efeff4;display:none;" id="box4">
+        <ul id="msglist" class="aui-list aui-media-list">
+            <li class="aui-list-item wechat-top">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-label-icon">
+                        <i class="aui-iconfont aui-icon-mobile"></i>
+                    </div>
+                    <div class="aui-list-item-inner">
+                        已登录
+                    </div>
+                </div>
+            </li>
+            <msglist v-for="(msg,index) in msglist" :key="msg.msg.id" :index="index" :msgmodel="msg"></msglist>
+        </ul>
+    </div>
+    <!--消息页面结束-->
+
+    <!--我的页面开始-->
+    <div class="box" style="background-color: #efeff4;display:none;" id="box5">
+      <section v-if="usermodel._id==0" tapmode @click="openWin('login_win',usermodel._id)" class="aui-content aui-grid aui-margin-b-15">
+          <div class="aui-row">
+              <div style="padding: 0.55rem 0;" class="aui-col-xs-3">
+                  <img style="width:50px;margin:0 auto;" :src="usermodel._faceurl" class="aui-img-round">
+              </div>
+              <div class="aui-col-xs-9 aui-border-r">
+                <div class="menberinfo">
+                  <h4 class="aui-font-size-16">访客您好<i class="unvip"></i></h4>
+                  <p><i class="fa fa-tablet aui-text-info"></i> 您还没有登陆,点击登陆注册！</p>
+                </div>
+              </div>
+          </div>
+      </section>
+        <section v-else class="aui-content aui-grid aui-margin-b-15">
+            <div class="aui-row">
+                <div style="padding: 0.55rem 0;" class="aui-col-xs-2">
+                    <img style="width:50px;margin:0 auto;" :src="usermodel._faceurl" class="aui-img-round">
+                </div>
+                <div class="aui-col-xs-4 aui-border-r">
+                  <div class="menberinfo">
+                    <h4 class="aui-font-size-16">{{usermodel._nick}}<i :class="'vip'+usermodel._viplevel"></i></h4>
+                    <p><i class="fa fa-tablet aui-text-info"></i> {{usermodel._phone}}</p>
+                  </div>
+                </div>
+                <div class="aui-col-xs-3 aui-border-r">
+                    <big class="aui-text-danger aui-font-size-16">{{usermodel._score}}<small> 元</small></big>
+                    <div class="aui-gird-lable aui-font-size-12">余额</div>
+                </div>
+                <div class="aui-col-xs-3">
+                    <big class="aui-text-success aui-font-size-16">{{usermodel._xiaofeiscore}}<small> 分</small></big>
+                    <div class="aui-gird-lable aui-font-size-12">积分</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="aui-content aui-margin-b-10">
+            <div class="aui-grid">
+                <div class="aui-row">
+                    <div tapmode @click="openWin('account',usermodel._id)" class="aui-col-xs-3">
+                        <i class="fa fa-credit-card aui-font-size-16 aui-text-info"></i>
+                        <div class="aui-grid-label aui-font-size-12">充值</div>
+                    </div>
+                    <div v-if="usermodel._ismk || usermodel._isfgs" tapmode @click="openWin('tx_win',usermodel._id)" class="aui-col-xs-3">
+                        <i class="fa fa-cc-paypal aui-font-size-16 aui-text-warning"></i>
+                        <div class="aui-grid-label aui-font-size-12">提现</div>
+                    </div>
+                    <div tapmode @click="openWin('jiaoyi_win',usermodel._id)" class="aui-col-xs-3">
+                        <i class="fa fa-vcard-o aui-font-size-16 aui-text-warning"></i>
+                        <div class="aui-grid-label aui-font-size-12">消费记录</div>
+                    </div>
+                    <div tapmode @click="openWin('feedback_win',usermodel._id)" class="aui-col-xs-3">
+                        <i class="fa fa-user-plus aui-font-size-16 aui-text-info"></i>
+                        <div class="aui-grid-label aui-font-size-12">我要认证</div>
+                    </div>
+                    <div v-if="!usermodel._ismk" tapmode @click="openWin('feedback_win',usermodel._id)" class="aui-col-xs-3">
+                        <i class="fa fa-users aui-font-size-16 aui-text-success"></i>
+                        <div class="aui-grid-label aui-font-size-12">申请成为美客</div>
+                    </div>
+                    <div class="aui-hr aui-clearfix"></div>
+                    <div tapmode onclick="openScanner()" class="aui-col-xs-3">
+                        <i class="fa fa-barcode aui-font-size-16 aui-text-danger"></i>
+                        <div class="aui-grid-label aui-font-size-12">我要付款</div>
+                    </div>
+                    <div v-if="usermodel._isfgs" tapmode @click="openWin('payback_win',usermodel._id)" class="aui-col-xs-3">
+                        <i class="fa aui-font-size-16 fa-cc-visa aui-text-warning"></i>
+                        <div class="aui-grid-label aui-font-size-12">我要收款</div>
+                    </div>
+                    <div tapmode @click="openWin('help_win')" class="aui-col-xs-3">
+                        <i class="fa aui-font-size-16 fa-question-circle aui-text-primary"></i>
+                        <div class="aui-grid-label aui-font-size-12">帮助</div>
+                    </div>
+                    <div tapmode @click="openWin('setting_win',usermodel.id)" class="aui-col-xs-3">
+                        <i class="fa aui-font-size-16 fa-cog aui-text-danger"></i>
+                        <div class="aui-grid-label aui-font-size-12">设置</div>
+                    </div>
+                    <div v-if="!usermodel._isfgs" tapmode @click="openWin('feedback_win',usermodel._id)" class="aui-col-xs-3">
+                        <i class="fa fa-handshake-o aui-font-size-16 aui-text-info"></i>
+                        <div class="aui-grid-label aui-font-size-12">友盟店铺加盟</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="aui-content">
+          <ul class="aui-list aui-list-in aui-margin-b-15">
+              <li tapmode onclick="openWin('shop')" class="aui-list-item">
+                  <div class="aui-list-item-label-icon">
+                      <i class="aui-iconfont aui-icon-cart aui-text-info"></i>
+                  </div>
+                  <div class="aui-list-item-inner aui-list-item-arrow">
+                      <div class="aui-list-item-title aui-font-size-14">积分商城</div>
+                      <div class="aui-list-item-right">0元好物在这里</div>
+                  </div>
+              </li>
+              <li tapmode onclick="openWin('store/store')" class="aui-list-item">
+                  <div class="aui-list-item-label-icon">
+                      <i class="aui-iconfont aui-icon-cert aui-text-warning"></i>
+                  </div>
+                  <div class="aui-list-item-inner aui-list-item-arrow">
+                      <div class="aui-list-item-title aui-font-size-14">友盟店铺</div>
+                      <div class="aui-list-item-right">大促销开始啦</div>
+                  </div>
+              </li>
+          </ul>
+            <ul class="aui-list aui-list-in">
+                <li tapmode @click="openWin('guanzhu_win',usermodel._id)" class="aui-list-item">
+                    <div class="aui-list-item-label-icon">
+                        <i class="aui-iconfont aui-icon-like aui-text-danger"></i>
+                    </div>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-title aui-font-size-14">我的关注</div>
+                    </div>
+                </li>
+                <li v-if="usermodel._ismk" tapmode @click="openWin('fans_win',usermodel._id)" class="aui-list-item">
+                    <div class="aui-list-item-label-icon">
+                        <i class="aui-iconfont aui-icon-star aui-text-primary"></i>
+                    </div>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-title aui-font-size-14">我的粉丝</div>
+                    </div>
+                </li>
+                <li tapmode @click="openWin('mmdetail_win',usermodel._id)" class="aui-list-item">
+                    <div class="aui-list-item-label-icon">
+                        <i class="aui-iconfont aui-icon-image aui-text-info"></i>
+                    </div>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-title aui-font-size-14">我的相册</div>
+                    </div>
+                </li>
+                <li tapmode @click="openWin('useraddress_win',usermodel._id)" class="aui-list-item">
+                    <div class="aui-list-item-label-icon">
+                        <i class="aui-iconfont aui-icon-location aui-text-info"></i>
+                    </div>
+                    <div class="aui-list-item-inner aui-list-item-arrow">
+                        <div class="aui-list-item-title aui-font-size-14">收货地址</div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </div>
+    <!--我的页面结束-->
+    <footer class="aui-bar aui-bar-tab" id="footer">
+        <div class="aui-bar-tab-item aui-active" tapmode>
+            <i class="aui-iconfont aui-icon-home"></i>
+            <div class="aui-bar-tab-label">首页</div>
+        </div>
+        <div class="aui-bar-tab-item" tapmode>
+            <i class="aui-iconfont aui-icon-image"></i>
+            <div class="aui-bar-tab-label">美图</div>
+        </div>
+        <div class="aui-bar-tab-item" tapmode>
+            <i class="aui-iconfont aui-icon-video"></i>
+            <div class="aui-bar-tab-label">视频</div>
+        </div>
+        <div class="aui-bar-tab-item" tapmode>
+            <div class="aui-badge">1</div>
+            <i class="aui-iconfont aui-icon-info"></i>
+            <div class="aui-bar-tab-label">消息</div>
+        </div>
+        <div class="aui-bar-tab-item" tapmode>
+            <div class="aui-dot"></div>
+            <i class="aui-iconfont aui-icon-my"></i>
+            <div class="aui-bar-tab-label">我的</div>
+        </div>
+    </footer>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/aui-tab.js"></script>
+<script type="text/javascript" src="../script/aui-slide.js"></script>
+<script type="text/javascript" src="../script/aui-sharebox.js"></script>
+<script type="text/javascript" src="../script/aui-toast.js"></script>
+<script type="text/javascript" src="../script/aui-popup-new.js" ></script>
+<script type="text/javascript" src="../script/mmdata.js" ></script>
+<script type="text/javascript" src="../script/vue.js" ></script>
+<script type="text/javascript" src="../script/component.js" ></script>
+<script type="text/javascript" src="../script/index.js" ></script>
+<script type="text/javascript" src="../script/Ajax.js" ></script>
+<script type="text/javascript">
+    var pageindex=1;
+    apiready = function() {
+        api.parseTapmode();
+        DotAjax('api/mk/gzlist?pagesize=3',function(ret){
+          app.phlist=ret;
+        });
+        DotAjax('api/mk/tjlist',function(ret){
+          app1.mmlist=ret;
+        });
+        DotAjax('api/mk/list',function(ret){
+          appmmlist.mmlist=ret;
+        });
+    }
+    function addmk(){
+      pageindex++;
+      DotAjax("api/mk/list?page="+pageindex,function(ret){
+        for(var i=0;i<ret.length;i++)
+        {
+          appmmlist.mmlist.push(ret[i]);
+        }
+      })
+    }
+    var tab = new auiTab({
+        element: document.getElementById("footer")
+    }, function(ret) {
+        if (ret) {
+            for (var i = 1; i <= 5; i++) {
+                  if (i == ret.index)
+                  {
+                      document.getElementById("box" + i).style.display = "block";
+                  }
+                  else
+                      document.getElementById("box" + i).style.display = "none";
+            }
+        }
+    });
+
+    //首页幻灯片代码
+    var slide = new auiSlide({
+        container: document.getElementById("aui-slide"),
+        // "width":300,
+        "height": 140,
+        "speed": 500,
+        "autoPlay": 3000, //自动播放
+        "loop": true,
+        "pageShow": true,
+        "pageStyle": 'line',
+        'dotPosition': 'center'
+    })
+    // 更新分类菜单的选中状态
+
+    //鼎力支持
+    var popup = new auiPopup();
+    function showPopup(location){
+        popup.init({
+            frameBounces:true,//当前页面是否弹动，（主要针对安卓端）
+            location:location,//位置，top(默认：顶部中间),top-left top-right,bottom,bottom-left,bottom-right
+            buttons:[{
+                image:'../image/temp/share/wx.png',
+                text:'购买一顿10元简餐',
+                value:'wx'//可选
+            },{
+                image:'../image/temp/share/wx-circle.png',
+                text:'狠心购买一顿20元大餐',
+                value:'wx-circle'
+            },{
+                image:'../image/temp/share/qq.png',
+                text:'购买价值50元必需品购物礼包',
+                value:'qq'
+            },{
+                image:'../image/temp/share/qzone.png',
+                text:'购买今晚价值100元烛光晚餐',
+                value:'qq-qzone'
+            },{
+                image:'../image/temp/share/sina-weibo.png',
+                text:'购买价值1000元电子产品'
+            }],
+        },function(ret){
+            if(ret){
+                //document.getElementById("button-index").textContent = ret.buttonIndex;
+                //document.getElementById("button-value").textContent = ret.buttonValue;
+            }
+        })
+    }
+
+    //分享
+    var sharebox = new auiSharebox();
+    var toast = new auiToast();
+    function openSharebox() {
+        sharebox.init({
+            frameBounces: true, //当前页面是否弹动，（主要针对安卓端）
+            buttons: [{
+                image: '../image/temp/share/wx.png',
+                text: '微信',
+                value: 'wx' //可选
+            }, {
+                image: '../image/temp/share/wx-circle.png',
+                text: '朋友圈',
+                value: 'wx-circle'
+            }, {
+                image: '../image/temp/share/qq.png',
+                text: 'QQ好友',
+                value: 'qq'
+            }, {
+                image: '../image/temp/share/qzone.png',
+                text: 'QQ空间',
+                value: 'qq-qzone'
+            }, {
+                image: '../image/temp/share/qq-weibo.png',
+                text: 'QQ微博'
+            }, {
+                image: '../image/temp/share/sina-weibo.png',
+                text: '新浪微博'
+            }, {
+                image: '../image/temp/share/message.png',
+                text: '短信'
+            }],
+            col: 5,
+            cancelTitle: '关闭' //可选,当然也可以采用下面的方式使用图标
+                // cancelTitle:'<i class="aui-iconfont aui-icon-close aui-font-size-16"></i>'//可选
+        }, function(ret) {
+            if (ret) {
+                //document.getElementById("button-index").textContent = ret.buttonIndex;
+                //document.getElementById("button-value").textContent = ret.buttonValue;
+            }
+        })
+    }
+    function showMessage(type) {
+        if (type == 1) {
+            toast.success({
+                title: "点赞成功",
+                duration: 2000
+            });
+        } else {
+            toast.success({
+                title: "收藏成功",
+                duration: 2000
+            });
+        }
+    }
+
+    //美图页面点击标签查看数据代码
+    function  selectM(ele){
+      if($api.hasCls(ele, 'aui-label-outlined'))
+      {
+          $api.removeCls(ele, 'aui-label-outlined');
+          $api.addCls(ele, 'aui-label-info');
+          $api.append(ele,' <i class="aui-iconfont aui-icon-correct"></i>');
+      }
+      else {
+        $api.removeCls(ele, 'aui-label-info');
+        $api.addCls(ele, 'aui-label-outlined');
+        $api.text(ele, $api.text(ele));
+      }
+    }
+
+    //搜索条代码开始
+    var searchBar = document.querySelector(".aui-searchbar");
+    var searchBarInput = document.querySelector(".aui-searchbar input");
+    var searchBarBtn = document.querySelector(".aui-searchbar .aui-searchbar-btn");
+    var searchBarClearBtn = document.querySelector(".aui-searchbar .aui-searchbar-clear-btn");
+    if(searchBar){
+        searchBarInput.onclick = function(){
+            searchBarBtn.style.marginRight = 0;
+        }
+        searchBarInput.oninput = function(){
+            if(this.value.length){
+                searchBarClearBtn.style.display = 'block';
+                searchBarBtn.classList.add("aui-text-info");
+                searchBarBtn.textContent = "搜索";
+            }else{
+                searchBarClearBtn.style.display = 'none';
+                searchBarBtn.classList.remove("aui-text-info");
+                searchBarBtn.textContent = "取消";
+            }
+        }
+    }
+    searchBarClearBtn.onclick = function(){
+        this.style.display = 'none';
+        searchBarInput.value = '';
+        searchBarBtn.classList.remove("aui-text-info");
+        searchBarBtn.textContent = "取消";
+    }
+    searchBarBtn.onclick = function(){
+        var keywords = searchBarInput.value;
+        if(keywords.length){
+            searchBarInput.blur();
+            //搜索框代码开始
+            //document.getElementById("search-keywords").textContent = keywords;
+        }else{
+            this.style.marginRight = "-"+this.offsetWidth+"px";
+            searchBarInput.value = '';
+            searchBarInput.blur();
+        }
+    }
+    function refresh()
+    {
+      appmy.usermodel=$api.getStorage('loginmodel');
+    }
+    function openScanner(){
+      var FNScanner = api.require('FNScanner');
+      FNScanner.openScanner({
+          autorotation: true
+      }, function(ret, err) {
+          if (ret) {
+              if (ret.eventType == "success") {
+                openWin('pay_win');
+              }
+          }
+      });
+    }
+</script>
+
+</html>

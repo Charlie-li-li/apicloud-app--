@@ -1,0 +1,105 @@
+.vip7 {
+    background: url(../image/vip/vip_icon7.png) no-repeat center center;
+    width: 14px;
+    height: 14px;
+    background-size: contain;
+    display: inline-block;
+    margin-left: 2px;
+}
+
+.vip6 {
+    background: url(../image/vip/vip_icon6.png) no-repeat center center;
+    width: 14px;
+    height: 14px;
+    background-size: contain;
+    display: inline-block;
+    margin-left: 2px;
+}
+.vip5 {
+    background: url(../image/vip/vip_icon5.png) no-repeat center center;
+    width: 14px;
+    height: 14px;
+    background-size: contain;
+    display: inline-block;
+    margin-left: 2px;
+}
+.vip4 {
+    background: url(../image/vip/vip_icon4.png) no-repeat center center;
+    width: 14px;
+    height: 14px;
+    background-size: contain;
+    display: inline-block;
+    margin-left: 2px;
+}
+.vip3 {
+    background: url(../image/vip/vip_icon3.png) no-repeat center center;
+    width: 14px;
+    height: 14px;
+    background-size: contain;
+    display: inline-block;
+    margin-left: 2px;
+}
+.vip2 {
+    background: url(../image/vip/vip_icon2.png) no-repeat center center;
+    width: 14px;
+    height: 14px;
+    background-size: contain;
+    display: inline-block;
+    margin-left: 2px;
+}
+.vip1 {
+    background: url(../image/vip/vip_icon1.png) no-repeat center center;
+    width: 14px;
+    height: 14px;
+    background-size: contain;
+    display: inline-block;
+    margin-left: 2px;
+}
+.vipyear {
+    background: url(../image/vip/vip_icon_year.png) no-repeat center center;
+    width: 14px;
+    height: 14px;
+    background-size: contain;
+    display: inline-block;
+    margin-left: 2px;
+}
+.vipseason {
+    background: url(../image/vip/vip_icon_season.png) no-repeat center center;
+    width: 14px;
+    height: 14px;
+    background-size: contain;
+    display: inline-block;
+    margin-left: 2px;
+}
+.vipmonth {
+    background: url(../image/vip/vip_icon_month.png) no-repeat center center;
+    width: 14px;
+    height: 14px;
+    background-size: contain;
+    display: inline-block;
+    margin-left: 2px;
+}
+.vip {
+    background: url(../image/temp/vip/vip_icon.png) no-repeat center center;
+    width: 14px;
+    height: 14px;
+    background-size: contain;
+    display: inline-block;
+    margin-left: 2px;
+}
+.unvip {
+    background: url(../image/temp/vip/vip_icon_un.png) no-repeat center center;
+    width: 14px;
+    height: 14px;
+    background-size: contain;
+    display: inline-block;
+    margin-left: 2px;
+}
+.vip-xs{
+  width:12px;
+  height:12px;
+}
+.vip-sm{
+  width:16px;
+  height: 16px;
+}

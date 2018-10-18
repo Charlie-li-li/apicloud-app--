@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+    body{
+      background-color: white;
+    }
+    .media-object {}
+
+    .media-object li {
+        padding: 5px;
+    }
+
+    .media-object img {
+        border-radius: 10px;
+    }
+
+    .media-object a {
+        font-size: 12px;
+        color: #666;
+    }
+
+    .media-object a div {
+        text-align: center;
+        padding-top: 5px;
+        margin: 10px auto;
+    }
+    </style>
+</head>
+<body>
+  <div style="padding:0px 5px;margin-top:10px;" id="tabContent1">
+      <ul id="gzlist" class="aui-content media-object">
+          <mmlist v-for="m in gzlist" v-bind:mkmodel="m" :key="m.userid"></mmlist>
+      </ul>
+  </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/mmdata.js" ></script>
+<script type="text/javascript" src="../script/vue.js" ></script>
+<script type="text/javascript" src="../script/component.js" ></script>
+<script type="text/javascript">
+    apiready = function(){
+        api.parseTapmode();
+
+        var vm=new Vue({
+          el:'#gzlist',
+          data:{
+            gzlist:api.pageParam.dt
+          }
+        });
+    };
+</script>
+</html>

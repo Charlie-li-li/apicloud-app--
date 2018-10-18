@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>设置</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+    </style>
+</head>
+<body>
+  <section class="aui-content">
+      <ul class="aui-list aui-list-in aui-margin-t-15 aui-margin-b-15">
+          <li class="aui-list-item">
+              <div class="aui-list-item-label-icon">
+                  <i class="aui-iconfont aui-icon-trash aui-text-info"></i>
+              </div>
+              <div class="aui-list-item-inner aui-list-item-arrow">
+                  <div class="aui-list-item-title aui-font-size-14">清除缓存</div>
+              </div>
+          </li>
+          <li class="aui-list-item">
+              <div class="aui-list-item-label-icon">
+                  <i class="aui-iconfont aui-icon-recovery aui-text-danger"></i>
+              </div>
+              <div class="aui-list-item-inner aui-list-item-arrow">
+                  <div class="aui-list-item-title aui-font-size-14">检查更新</div>
+              </div>
+          </li>
+          <li class="aui-list-item">
+              <div class="aui-list-item-label-icon">
+                  <i class="aui-iconfont aui-icon-cert aui-text-info"></i>
+              </div>
+              <div class="aui-list-item-inner aui-list-item-arrow">
+                  <div class="aui-list-item-title aui-font-size-14">关于我们</div>
+              </div>
+          </li>
+      </ul>
+      <ul class="aui-list aui-list-in aui-margin-t-15 aui-margin-b-15">
+          <li class="aui-list-item">
+              <div class="aui-list-item-label-icon">
+                  <i class="aui-iconfont aui-icon-comment aui-text-info"></i>
+              </div>
+              <div class="aui-list-item-inner aui-list-item-arrow">
+                  <div class="aui-list-item-title aui-font-size-14">免责声明</div>
+              </div>
+          </li>
+          <li class="aui-list-item">
+              <div class="aui-list-item-label-icon">
+                  <i class="aui-iconfont aui-icon-lock aui-text-warning"></i>
+              </div>
+              <div class="aui-list-item-inner aui-list-item-arrow">
+                  <div class="aui-list-item-title aui-font-size-14">黑名单</div>
+              </div>
+          </li>
+      </ul>
+      <ul class="aui-list aui-list-in">
+          <li tapmode onclick="loginout()" class="aui-list-item">
+              <div class="aui-list-item-label-icon">
+                  <i class="aui-iconfont aui-icon-refresh aui-text-info"></i>
+              </div>
+              <div class="aui-list-item-inner aui-list-item-arrow">
+                  <div class="aui-list-item-title aui-font-size-14">退出登陆</div>
+              </div>
+          </li>
+      </ul>
+  </section>
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript" src="../script/aui-collapse.js" ></script>
+<script type="text/javascript" src="../script/Ajax.js" ></script>
+<script type="text/javascript" src="../script/mmdata.js" ></script>
+<script type="text/javascript">
+    apiready = function () {
+        api.parseTapmode();
+    }
+    function loginout(){
+      $api.rmStorage('loginmodel');
+      $api.setStorage('loginmodel',userdata);
+      refreshMy();
+      openWin('login_win');
+    }
+</script>
+</html>

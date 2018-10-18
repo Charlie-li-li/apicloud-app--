@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript" src="../script/api.js"></script>
+    <script>
+        var piclist;
+        var imgs=[];
+        var txts=[];
+        apiready = function() {
+            api.parseTapmode();
+            piclist = api.pageParam.dt;
+            for(var i=0;i<piclist.length;i++)
+            {
+                imgs.push(piclist[i]._picurl);
+                txts.push("");
+            }
+            initphoto();
+        };
+
+        function initphoto() {
+            var photoBS_tt = api.require('photoBrowserTouTiao');
+            photoBS_tt.open({
+                hidden: {
+                    menu: true, //布尔类型；是否显示菜单按钮；默认：true
+                    input: false, //布尔类型；是否显示输入框；默认：true
+                    comment: false, //布尔类型；是否显示评论按钮；默认：true
+                    favorite: true, //布尔类型；是否显示收藏按钮；默认：true
+                    share: true, //布尔类型；是否弹显示分享按钮；默认：true
+                    save: true //布尔类型；用户长按是否弹出保存图片按钮；默认：true
+                },
+                textStyles: {
+                    min: 5, //数字类型；描述文字显示最小区域占比；默认：20
+                    max: 20
+                }
+            }, function(ret, err) {
+                if (ret.eventType == 'show') {
+                    photoBS_tt.setData({
+                        images: imgs,
+                        texts: txts,
+                        publisher: 'widget://photoBrowserTouTiao/publisher.png',
+                        comment: 520,
+                        favorite: false
+                    });
+                }else if (ret.eventType == 'back') {
+                    api.closeWin();
+                }else if (ret.eventType == 'menu') {
+                    openFrames('btnszc_frm');
+                }else if (ret.eventType == 'share') {
+                    openFrames('btns_frm');
+                }
+              });
+        };
+
+
+        function openFrames(frmName) {
+            // 打开mini购物车Frame
+            api.openFrame({
+                name: frmName,
+                url: './' + frmName + '.html',
+                rect: {
+                    x: 0,
+                    y: 0,
+                    w: 'auto',
+                    h: 'auto'
+                },
+                bounces: false // 关闭弹动
+            });
+            // 将mini购物车Frame放置在首页Window所有Frame的最上层
+            api.bringFrameToFront({
+                from: frmName
+            });
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>充值中心</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" />
+    <style>
+        .aui-card-list-header {
+            font-size: 14px;
+        }
+
+        .aui-card-list-content-padded {
+            font-size: 12px;
+        }
+
+        .title {
+            margin-top: 0px;
+            padding-top: 15px;
+            text-align: center;
+            background-color: #ffffff;
+            padding-bottom: 10px;
+        }
+
+        .title h4 {
+            font-weight: bold;
+            font-family: "微软雅黑";
+            color: #696969;
+            font-size: 15px;
+        }
+
+        .title h4 span {
+            font-weight: 200;
+        }
+
+        .title p {
+            font-size: 12px;
+            line-height: 23px;
+            text-align: left;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="auiTab" class="aui-bar aui-bar-btn aui-bar-btn-round aui-margin-t-10" style="width:45%;">
+        <div class="aui-bar-btn-item aui-active">会员充值</div>
+        <div class="aui-bar-btn-item">现金充值</div>
+    </div>
+    <div id="box1">
+        <section tapmode onclick="resetmoney(36)" class="aui-content-padded">
+            <div class="aui-card-list">
+                <div class="aui-card-list-header aui-collapse-header">
+                    <div>
+                        青铜会员 <span class="aui-text-danger aui-font-size-12">￥36元</span> <small>单月特权</small></div>
+                    <i class="aui-iconfont aui-icon-down aui-collapse-arrow"></i>
+                </div>
+                <div class="aui-card-list-content-padded aui-collapse-content">
+                    <div style="line-height:23px;padding-left:10px;" class="aui-row aui-row-padded">
+                        <div><i class="fa fa-star-half-o aui-font-size-12 aui-text-info"></i> 点亮尊贵标识</div>
+                        <div><i class="fa fa-eye-slash aui-font-size-12 aui-text-info"></i> 解锁二至四星写真,专享美日App高清写真视频专辑</div>
+                        <div><i class="fa fa-picture-o aui-font-size-12 aui-text-info"></i> 任意看30期美日高清写真专辑和16期视频专辑</div>
+                    </div>
+                </div>
+            </div>
+            <div tapmode onclick="resetmoney(68)" class="aui-card-list">
+                <div class="aui-card-list-header aui-collapse-header">
+                    <div>
+                        白银会员 <span class="aui-text-danger aui-font-size-12">￥68元</span> <small>双月特权</small></div>
+                    <i class="aui-iconfont aui-icon-down aui-collapse-arrow"></i>
+                </div>
+                <div class="aui-card-list-content-padded aui-collapse-content">
+                    <div style="line-height:23px;padding-left:10px;" class="aui-row aui-row-padded">
+                        <div><i class="fa fa-star-half-o aui-font-size-12 aui-text-info"></i> 点亮尊贵标识</div>
+                        <div><i class="fa fa-eye-slash aui-font-size-12 aui-text-info"></i> 解锁二至四星写真,专享美日App高清写真视频专辑</div>
+                        <div><i class="fa fa-picture-o aui-font-size-12 aui-text-info"></i> 任意看60期美日高清写真专辑和16期视频专辑</div>
+                    </div>
+                </div>
+            </div>
+            <div tapmode onclick="resetmoney(118)" class="aui-card-list">
+                <div class="aui-card-list-header aui-collapse-header">
+                    <div>
+                        黄金会员 <span class="aui-text-danger aui-font-size-12">￥118元</span> <small>季度特权</small></div>
+                    <i class="aui-iconfont aui-icon-down aui-collapse-arrow"></i>
+                </div>
+                <div class="aui-card-list-content-padded aui-collapse-content">
+                    <div style="line-height:23px;padding-left:10px;" class="aui-row aui-row-padded">
+                        <div><i class="fa fa-star-half-o aui-font-size-12 aui-text-info"></i> 点亮尊贵标识</div>
+                        <div><i class="fa fa-eye-slash aui-font-size-12 aui-text-info"></i> 解锁全部写真视频,专享美日App高清写真视频专辑</div>
+                        <div><i class="fa fa-picture-o aui-font-size-12 aui-text-info"></i> 任意看120期美日高清写真专辑和16期视频专辑</div>
+                    </div>
+                </div>
+            </div>
+            <div tapmode onclick="resetmoney(368)" class="aui-card-list">
+                <div class="aui-card-list-header aui-collapse-header aui-active">
+                    <div>
+                        钻石会员 <span class="aui-text-danger aui-font-size-12">￥368元</span> <small>一年特权</small>
+                        <span class="aui-label aui-label-danger">推荐</span>
+                    </div>
+                    <i class="aui-iconfont aui-icon-down aui-collapse-arrow"></i>
+                </div>
+                <div class="aui-card-list-content-padded aui-collapse-content aui-show">
+                    <div style="line-height:23px;padding-left:10px;" class="aui-row aui-row-padded">
+                        <div><i class="fa fa-diamond aui-font-size-12 aui-text-info"></i> 点亮尊贵标识</div>
+                        <div><i class="fa fa-eye aui-font-size-12 aui-text-info"></i> 解锁全部写真视频,任意看海量美日App高清写真视频专辑</div>
+                        <div><i class="fa fa-envelope-open-o aui-font-size-12 aui-text-info"></i> 可申请和美日App美客对话,随时畅聊</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div style="display:none;" id="box2">
+        <div class="aui-content aui-margin-b-10 aui-margin-t-10">
+            <ul class="aui-list aui-form-list">
+                <li class="aui-list-header">输入您要充值的金额</li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label-icon">
+                            <i class="fa fa-paypal"></i>
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input id="txje" type="number" placeholder="100.00">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="title">
+            <h4><span>现金充值说明</span></h4>
+            <p><span class="aui-text-danger">注意:</span>您所充值的现金用于<span class="aui-text-primary">鼎力支持</span>您所欣赏的美客拍摄的写真或者视频, 现金会
+                <span class="aui-text-warning">1:1</span>转换为美客App<span class="aui-text-info">等值积分</span>,积分可以在任意一家美日App<span class="aui-text-primary">友盟店铺</span>直接当现金以<span class="aui-text-warning">1:1</span>付款消费,或者您也可以在美日App<span class="aui-text-primary">积分商城</span>愉快购物消费!</p>
+        </div>
+    </div>
+    <footer class="aui-bar aui-bar-tab aui-margin-t-15">
+        <div id="btnqr" class="aui-bar-tab-item aui-bg-info aui-text-white" tapmode onclick="openAliPay()" style="width: auto;">立即加入会员享特权</div>
+    </footer>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/aui-collapse.js"></script>
+<script type="text/javascript" src="../script/aui-tab.js"></script>
+<script type="text/javascript" src="../script/Ajax.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+        api.parseTapmode();
+    }
+    var collapse = new auiCollapse({
+        autoHide: true //是否自动隐藏已经展开的容器
+    });
+
+    var tab = new auiTab({
+        element: document.getElementById("auiTab"),
+        repeatClick: true
+    }, function(ret) {
+        if (ret) {
+            for (var i = 1; i <= 2; i++) {
+                if (ret.index == 2)
+                {
+                  $api.text($api.byId('btnqr'),'立即充值支持您的美客');
+                }
+                else {
+                  $api.text($api.byId('btnqr'),'立即加入会员享特权');
+                }
+
+                if (i == ret.index)
+                    document.getElementById("box" + i).style.display = "block";
+                else
+                    document.getElementById("box" + i).style.display = "none";
+            }
+        }
+    });
+    var amount = 368;
+
+    function resetmoney(num) {
+        amount = num;
+    }
+
+    function openAliPay() {
+        var iaf = api.require('aliPay');
+        var subject = "充值";
+        var body = "用户编号：" + $api.getStorage('loginmodel')._id + "用户姓名:" +
+            $api.getStorage('loginmodel')._name;
+        if ($api.text($api.byId('btnqr')) == '立即充值支持您的美客')
+            amount = parseFloat($api.byId('txje').value);
+        if(amount=="NaN" && amount<1)
+          return;
+        var dt = new Date();
+        var ordernum = dt.getTime();
+        var url = "http://mr.hackcoll.com";
+        iaf.pay({
+            partner: '2088421986439611',
+            seller: '2270733441@qq.com',
+            rsaPriKey: 'MIICXAIBAAKBgQCykuOCxcIcnlUEIOgORqSSMFhyK3wPWu8ml3kytv+wihPWc7XiogEs7fIodjfhpXD5i4e8wwaJykFoDoC4hti7oPFKfMUmaJc0u59qg7PjOU5RTJni395kbhbNwd76ygNg+fW1HyOoy374djV15qaJNP06jDgRMZ15Q+rB6fu01wIDAQABAoGBAKNcgUl3BJcNuZSnTeMReShLlf4MDdg2RiW12KguhUbJalB7Vl9X+V9S5n9hdsm0gd+oZ6qld2vCXYeGDPfCVK3507/5XuKByJYKCWvqE8jBYYzgfIkoNbukpxJ50vDhuPr9l90/2uXRu9akMQdYfJYh76XImQYXlZgX06kI9h/hAkEA2VjApq32lLPC46bexuUnD9GvQ0aPaJRXzOUZoMRjqO+nHwi5/yyU7Q/vZ+K9x36YK8o/A/SK22rTinWpUv9rnwJBANJU50Zeh44WXDfOxwpkxvOU8eSHl3US2SHuB19LNHKzqpeK2qhNwBB4aRqWegNidnPHHdPQCXj3DIV+SAJTq8kCQDRkdpw3VzdlVdd2xEEBwDbJ/wuimLNG/xs/JrxgWv3AN3L9sYhXgNbcfoN2XvUWCSyVJjeX3VkjGTdJQbXmKFUCQBi5klZbVmQFjOGilRNLtXd80tKifdNtW8j5SjSRiqDRLgSSdhHC0gkdnn1Zow4yzOnfRkpX8kUeBYLLzXs4isECQAYIwPlRipoYj5pvP+S2aj+Reh4Vw5Ra9vDF7bP/k2kyNq0oXZa+ZoZMPtXiMcKgz9rKV2icUotWrFvJ2mnm+I8=',
+            rsaPubKey: 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRAFljhNhgPdyPuBV64bfQNN1PjbCzkIM6qRdKBoLPXmKKMiFYnkd6rAoprih3/PrQEB/VsW8OoM8fxn67UDYuyBTqA23MML9q1+ilIZwBC2AQ2UBVOrFXfFl75p6/B5KsiNG9zpgmLCUYuLkxpLQIDAQAB',
+            subject: subject,
+            body: body,
+            amount: amount,
+            tradeNO: ordernum,
+            notifyURL: url
+        }, function(ret, err) {
+            if (ret.statusCode == '9000') {
+                /*api.toast({
+                msg : '支付成功！'
+                });*/
+                //异步请求增加参数
+                var url = "http://mr.hackcoll.com/api/cz/zfbcz?";
+                url += 'userid=' + $api.getStorage('loginmodel')._id;
+                url += "&czno=" + ordernum;
+                url += "&czmoney=" + amount;
+                api.ajax({
+                    url: url,
+                    method: 'get'
+                }, function(ret, err) {
+                    if (ret.IsSuccess) {
+                        var um=$api.getStorage('loginmodel');
+                        um._score+=amount;
+                        $api.setStorage('loginmodel',um);
+                        refreshMy();
+                        msg(ret.Info);
+                    } else {
+                        api.toast({
+                            msg: '服务器忙，请稍后访问！',
+                            location: 'middle'
+                        })
+                    }
+                });
+            } else {
+                api.toast({
+                    msg: '支付失败！'
+                });
+            }
+        });
+    };
+</script>
+
+</html>

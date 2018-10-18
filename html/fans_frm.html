@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>帮助</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/vip.css" />
+    <style>
+    .aui-list-item.wechat-top {
+        background-color: #f3f3f7;
+    }
+
+    .aui-list .wechat-avatar {
+        width: 3rem;
+    }
+
+    .wechat-avatar .aui-row-padded {
+        background-color: #dddee0;
+        padding: 0.1rem;
+        border-radius: 0.2rem;
+        margin-left: -0.05rem;
+        margin-right: -0.05rem;
+    }
+
+    .wechat-avatar .aui-row-padded [class*=aui-col-xs-] {
+        padding: 0.05rem;
+    }
+
+    .wechat-avatar,
+    .wechat-avatar>img {
+        border-radius: 0.2rem;
+    }
+    </style>
+</head>
+<body>
+      <ul class="aui-list aui-media-list">
+        <li class="aui-list-item wechat-top">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-label-icon">
+                    <i class="aui-iconfont aui-icon-info"></i>
+                </div>
+                <div class="aui-list-item-inner aui-font-size-16">
+                    聊不聊天你做主！
+                </div>
+            </div>
+        </li>
+          <li tapmode onclick="openWin('chat_win')" class="aui-list-item aui-list-item-middle">
+              <div class="aui-media-list-item-inner">
+                  <div class="aui-list-item-media wechat-avatar">
+                      <img src="../image/temp/542871a4100fe81170e539fa2e1ea939_header_l.jpg" />
+                  </div>
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-text">
+                          <div class="aui-list-item-title aui-font-size-14">赵美丽
+                            <i class="vip7 vip-xs"></i></div>
+                          <div class="aui-list-item-right">
+                            <i class="aui-iconfont aui-icon-comment aui-text-warning"></i>
+                          </div>
+                      </div>
+                      <div class="aui-list-item-text aui-font-size-12">
+                          贡献值:2784 总贡献值:31206
+                      </div>
+                  </div>
+              </div>
+          </li>
+          <li tapmode onclick="openWin('chat_win')" class="aui-list-item aui-list-item-middle">
+              <div class="aui-media-list-item-inner">
+                  <div class="aui-list-item-media wechat-avatar">
+                      <img src="../image/temp/f238ca5e399cb10ca4d3b48cb65f97c4_header_l.jpg" />
+                  </div>
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-text">
+                          <div class="aui-list-item-title aui-font-size-14">张跳跳
+                            <i class="vip3 vip-xs"></i></div>
+                          <div class="aui-list-item-right">
+                            <i class="aui-iconfont aui-icon-comment aui-text-warning"></i>
+                          </div>
+                      </div>
+                      <div class="aui-list-item-text aui-font-size-12">
+                          贡献值:984 总贡献值:1341
+                      </div>
+                  </div>
+              </div>
+          </li>
+          <li tapmode onclick="openWin('chat_win')" class="aui-list-item aui-list-item-middle">
+              <div class="aui-media-list-item-inner">
+                  <div class="aui-list-item-media wechat-avatar">
+                      <img src="../image/temp/d83cc3c9aa165fc4e2861c1bb611cc67_header_l.jpg" />
+                  </div>
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-text">
+                          <div class="aui-list-item-title aui-font-size-14">李某女<i class="vipyear vip-xs"></i></div>
+                          <div class="aui-list-item-right">
+                              <i class="aui-iconfont aui-icon-comment aui-text-warning"></i>
+                          </div>
+                      </div>
+                      <div class="aui-list-item-text aui-font-size-12">
+                          贡献值:784 总贡献值:1200
+                      </div>
+                  </div>
+              </div>
+          </li>
+      </ul>
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript" src="../script/aui-collapse.js" ></script>
+<script type="text/javascript">
+    apiready = function () {
+        api.parseTapmode();
+    }
+    function openWin(name) {
+        var delay = 0;
+        if (api.systemType != 'ios') {
+            delay = 300;
+        }
+        api.openWin({
+            name: '' + name + '',
+            url: '' + name + '.html',
+            bounces: false,
+            delay: delay,
+            slidBackEnabled: true,
+            vScrollBarEnabled: false
+        });
+    }
+</script>
+</html>

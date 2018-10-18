@@ -1,0 +1,370 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/vip.css" />
+    <link rel="stylesheet" type="text/css" href="../css/list-to-detail.css" />
+
+    <style type="text/css">
+        html,
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .kr-article-title {
+            margin: 0px;
+            padding: 0px;
+            height: 80px;
+        }
+
+        .kr-article-title .img {
+            width: 100px;
+            float: left;
+            height: 80px;
+        }
+
+        .kr-article-title .info {
+            margin-left: 102px;
+            height: 80px;
+        }
+
+        .kr-article-title .info h4 {
+            font-size: 24px;
+            font-weight: 200;
+            line-height: 40px;
+        }
+
+        .kr-article-title .info p {
+            font-family: '宋体';
+            font-size: 12px;
+        }
+
+        .mui-content,
+        .kr-article-content {
+            background-color: white;
+        }
+
+        .mui-h6 {
+            color: Chocolate;
+        }
+
+        .mui-media img {
+            width: 100%;
+        }
+
+        .mmlist {
+            margin-top: 20px;
+        }
+
+        .mmlist .mui-media {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .btns {
+            margin: 10px 0px 5px 10px;
+            color: #666666;
+            font-size: 18px;
+        }
+
+        .btns span {
+            font-size: 10px;
+            padding: 0px 4px;
+        }
+
+        .text-light {
+            color: #ffffff;
+        }
+
+        .aui-card-list-header {
+            font-size: 14px;
+        }
+
+        .aui-card-list-content-padded {
+            font-size: 12px;
+        }
+
+        .aui-list-item-inner {
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mui-content">
+        <!--顶部banner图 开始-->
+        <div id="userhead">
+            <div id="kr-article-banner" class="kr-article-banner">
+                <div id="kr-article-cover" class="kr-article-cover">
+                    <img :src="usermodel._recoverurl">
+                </div>
+                <div class="kr-article-title">
+                    <div class="img">
+                        <img width="80" :src="usermodel._faceurl" />
+                    </div>
+                    <div class="info">
+                        <h4>{{usermodel._nick}}<i class="vip-xs" :class="'vip'+usermodel._viplevel"></i></h4>
+                        <p>{{usermodel._yuanxi}}</p>
+                    </div>
+                </div>
+            </div>
+            <!--顶部banner图 结束-->
+            <section style="margin-top:10px;" class="aui-grid">
+                <div class="aui-row">
+                    <div style="color:SteelBlue;font-size:14px;background-color:LightSkyBlue; border: none;padding-top:10px;padding-bottom:10px;" class="aui-col-xs-6">
+                        已经有{{usermodel._gznum}}人关注
+                    </div>
+                    <div tapmode @click.once="gz(usermodel._id);" style="color:white;font-size:14px;border: none;background-color:DodgerBlue;padding-top:10px;padding-bottom:10px;" class="aui-col-xs-6">
+                        关注她
+                    </div>
+                </div>
+            </section>
+        </div>
+        <section style="background-color:#f5f5f5;" class="aui-content">
+            <div id="mmdetail" class="aui-timeline">
+                <template v-for="(mmmodel,index) in list">
+                <div class="aui-timeline-item-header">{{mmmodel.News._adddatetime}}</div>
+                <div class="aui-timeline-item">
+                    <div v-if="mmmodel.News._videourl!=''" class="aui-timeline-item-label aui-bg-info text-light">视频</div>
+                    <div v-else-if="mmmodel.News._ispic" class="aui-timeline-item-label aui-bg-warning text-light">写真</div>
+                    <div v-else class="aui-timeline-item-label-icon aui-bg-danger"><i class="aui-iconfont aui-icon-like text-light"></i></div>
+                    <div class="aui-timeline-item-inner">
+                      <div v-if="mmmodel.type==3" class="aui-card-list">
+                          <div class="aui-card-list-content-padded">
+                              {{mmmodel.News._content}}
+                          </div>
+                      </div>
+                      <div v-else class="aui-card-list">
+                          <div class="aui-card-list-header aui-border-b">
+                              <div>{{mmmodel.News._title}}</div>
+                              <i tapmode @click="openSharebox(mmmodel.News._userid,mmmodel.News._id);" class="aui-iconfont aui-icon-share"></i>
+                          </div>
+                          <div v-if="mmmodel.type==2" tapmode onclick="fnPlay('http://mp4.vjshi.com/2018-04-03/ead35533092d9afbbadfbcf29e939283.mp4','相思成灾')" class="aui-card-list-content-padded">
+                              {{mmmodel.News._content}}
+                              <img :src="p._picurl">
+                          </div>
+                          <div v-else class="aui-card-list-content-padded">
+                            {{mmmodel.News._content}}
+                            <div tapmode @click="openWin('viewpic',mmmodel.Pics)" class="aui-row aui-row-padded">
+                                <div v-for="p in mmmodel.Pics.slice(0,6)" class="aui-col-xs-4">
+                                    <img :src="p._picurl" />
+                                </div>
+                            </div>
+                          </div>
+                          <div class="aui-card-list-footer aui-border-t aui-font-size-12">
+                              <div tapmode @click.once="showMessage(1,mmmodel.News._userid,mmmodel.News._id,2,index);"><i class="aui-iconfont aui-icon-laud aui-font-size-14"></i> {{mmmodel.News._dingnum}}次</div>
+                              <div tapmode @click.once="showMessage(2,mmmodel.News._userid,mmmodel.News._id,3,index);"><i class="aui-iconfont aui-icon-star aui-font-size-14"></i> {{mmmodel.News._scnum}}次</div>
+                              <div tapmode @click="showPopup('bottom-left',mmmodel.News._userid,mmmodel.News._id)"><i class="aui-iconfont aui-icon-like aui-font-size-14 aui-text-danger"></i> 鼎力支持</div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+                </template>
+            </div>
+        </section>
+    </div>
+
+    <script type="text/javascript" src="../script/api.js"></script>
+    <script type="text/javascript" src="../script/aui-sharebox.js"></script>
+    <script type="text/javascript" src="../script/aui-toast.js"></script>
+    <script type="text/javascript" src="../script/aui-popup-new.js"></script>
+    <script type="text/javascript" src="../script/vue.js"></script>
+    <script type="text/javascript" src="../script/Ajax.js"></script>
+    <script type="text/javascript">
+        var usermodel;
+        var list = [];
+        var vm2;
+        var current = $api.getStorage('loginmodel');
+        apiready = function() {
+                //usermodel=api
+                usermodel = api.pageParam.dt;
+                api.parseTapmode();
+                var vm = new Vue({
+                    el: '#userhead',
+                    data: {
+                        usermodel: usermodel
+                    },
+                    methods: {
+                        gz: function(userid) {
+                            if (current&&current._id) {
+                                DotAjax('api/mk/gz?uid=' + current._id + '&mid=' + usermodel._id, function(ret) {
+                                    if (ret.IsSuccess) {
+                                        this.usermodel._gznum++;
+                                        toast.success({
+                                            title: "关注成功",
+                                            duration: 2000
+                                        });
+                                    }
+                                })
+                            } else {
+                                openWin('login_win');
+                            }
+                        }
+                    }
+                });
+                vm2 = new Vue({
+                    el: '#mmdetail',
+                    data: {
+                        list: list
+                    },
+                    methods: {
+                        openWin: function(winName, dt) {
+                            var delay = 0;
+                            if (api.systemType != 'ios') {
+                                delay = 300;
+                            }
+                            api.openWin({
+                                name: '' + winName + '',
+                                url: '' + winName + '.html',
+                                bounces: false,
+                                delay: delay,
+                                slidBackEnabled: true,
+                                vScrollBarEnabled: false,
+                                pageParam: {
+                                    dt: dt
+                                }
+                            });
+                        },
+                        showMessage: function(type, mid, nid, sort, i) {
+                            //var thisvm=vm2;
+                            if (type == 1) {
+                                if (current&&current._id) {
+                                    var thisvm=vm2;
+                                    DotAjax('api/mk/zanorzhuan?uid=' + current._id + '&mid=' + mid + '&nid=' + nid + '&sort=' + sort, function(ret) {
+                                        if (ret.IsSuccess) {
+                                            thisvm.list[i]._dingnum++;
+                                            toast.success({
+                                                title: "点赞成功",
+                                                duration: 2000
+                                            });
+                                        }
+                                    })
+                                } else {
+                                    openWin('login_win');
+                                }
+                            } else {
+                                if (current&&current._id) {
+                                    var thisvm=vm2;
+                                    DotAjax('api/mk/zanorzhuan?uid=' + current._id + '&mid=' + mid + '&nid=' + nid + '&sort=' + sort, function(ret) {
+                                        if (ret.IsSuccess) {
+                                            thisvm.list[i]._scnum++;
+                                            toast.success({
+                                                title: "收藏成功",
+                                                duration: 2000
+                                            });
+                                        }
+                                    })
+                                } else {
+                                    openWin('login_win');
+                                }
+                            }
+                        },
+                        showPopup: function(location, mid, nid) {
+                            popup.init({
+                                frameBounces: true, //当前页面是否弹动，（主要针对安卓端）
+                                location: location, //位置，top(默认：顶部中间),top-left top-right,bottom,bottom-left,bottom-right
+                                buttons: [{
+                                    image: '../image/temp/share/wx.png',
+                                    text: '购买一顿10元简餐',
+                                    value: '10' //可选
+                                }, {
+                                    image: '../image/temp/share/wx-circle.png',
+                                    text: '狠心购买一顿20元大餐',
+                                    value: '20'
+                                }, {
+                                    image: '../image/temp/share/qq.png',
+                                    text: '购买价值50元必需品购物礼包',
+                                    value: '50'
+                                }, {
+                                    image: '../image/temp/share/qzone.png',
+                                    text: '购买今晚价值100元烛光晚餐',
+                                    value: '100'
+                                }, {
+                                    image: '../image/temp/share/sina-weibo.png',
+                                    text: '购买价值1000元电子产品',
+                                    value: '1000'
+                                }],
+                            }, function(ret) {
+                                if (ret) {
+                                    if (current&&$api.getStorage('loginmodel')._score) {
+                                        //alert($api.getStorage('loginmodel')._score);
+                                        if ($api.getStorage('loginmodel')._score < ret.buttonValue) {
+                                            openWin('account');
+                                        } else {
+                                            DotAjax('api/mk/zhichi?uid=' + current._id + '&mid=' + mid + '&nid=' + nid + '&money=' + ret.buttonValue, function(ret) {
+                                                if (ret.IsSuccess) {
+                                                  var um=$api.getStorage('loginmodel');
+                                                  um._score-= parseInt(ret.buttonValue);
+                                                  $api.setStorage('loginmodel',um);
+                                                    refreshMy();
+                                                    msg("支持您喜欢的美客成功!");
+                                                }
+                                            })
+                                        }
+                                    } else {
+                                        {
+                                            openWin('login_win');
+                                        }
+                                    } //document.getElementById("button-value").textContent = ret.buttonValue;
+                                }
+                            })
+                        },
+                        openSharebox: function() {
+                            sharebox.init({
+                                frameBounces: true, //当前页面是否弹动，（主要针对安卓端）
+                                buttons: [{
+                                    image: '../image/temp/share/wx.png',
+                                    text: '微信',
+                                    value: 'wx' //可选
+                                }, {
+                                    image: '../image/temp/share/wx-circle.png',
+                                    text: '朋友圈',
+                                    value: 'wx-circle'
+                                }, {
+                                    image: '../image/temp/share/qq.png',
+                                    text: 'QQ好友',
+                                    value: 'qq'
+                                }, {
+                                    image: '../image/temp/share/qzone.png',
+                                    text: 'QQ空间',
+                                    value: 'qq-qzone'
+                                }, {
+                                    image: '../image/temp/share/qq-weibo.png',
+                                    text: 'QQ微博'
+                                }, {
+                                    image: '../image/temp/share/sina-weibo.png',
+                                    text: '新浪微博'
+                                }, {
+                                    image: '../image/temp/share/message.png',
+                                    text: '短信'
+                                }],
+                                col: 5,
+                                cancelTitle: '关闭' //可选,当然也可以采用下面的方式使用图标
+                                    // cancelTitle:'<i class="aui-iconfont aui-icon-close aui-font-size-16"></i>'//可选
+                            }, function(ret) {
+                                if (ret) {
+                                    //document.getElementById("button-index").textContent = ret.buttonIndex;
+                                    //document.getElementById("button-value").textContent = ret.buttonValue;
+                                }
+                            })
+                        }
+                    }
+                });
+                //alert(usermodel._id);
+                DotAjax('api/mk/getdetail?id=' + usermodel._id, function(ret) {
+                    vm2.list = ret;
+                });
+            }
+            //初始化头部数据
+
+        var popup = new auiPopup(); //初始化鼎立支持盒子
+        var sharebox = new auiSharebox(); //初始化分享盒子
+        var toast = new auiToast(); //初始化弹窗
+    </script>
+</body>
+
+</html>

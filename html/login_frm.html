@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+        .login img {
+            display: block;
+            width: 40%;
+            margin: 0 auto;
+        }
+
+        .aui-grid-label {
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="aui-content aui-margin-t-15 aui-margin-b-15">
+        <ul class="aui-list aui-form-list">
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label-icon">
+                        <i class="aui-iconfont aui-icon-mobile"></i>
+                    </div>
+                    <div class="aui-list-item-input">
+                        <input id="username" style="font-size:14px;" type="text" placeholder="输入您的手机号码">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label-icon">
+                        <i class="aui-iconfont aui-icon-lock"></i>
+                    </div>
+                    <div class="aui-list-item-input">
+                        <input id="yzmpwd" style="font-size:14px;" type="text" placeholder="输入手机验证码">
+                    </div>
+                    <div style="margin-right:5px;" class="aui-list-item-label-icon">
+                        <div id="yzmarea" class="aui-label aui-label-info">
+                            <div disabled tapmode id="yzm" style="padding:5px;padding-right:15px;">获取验证码</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="aui-content-padded">
+        <div tapmode onclick="verify()" class="aui-btn aui-btn-warning aui-btn-block aui-btn-sm">登录</div>
+    </div>
+    <footer style="position:fixed;bottom:0px;">
+        <div style="text-align:center;" class="aui-row aui-margin-t-15  aui-margin-b-15 aui-font-size-14">
+            其他登录方式
+        </div>
+        <div class="aui-content-padded">
+            <div class="aui-hr"></div>
+            <section class="aui-grid aui-bg-default aui-margin-b-15">
+                <div class="aui-row  login">
+                    <div class="aui-col-xs-4">
+                        <img src="../image/share/qq.png" />
+                        <div class="aui-grid-label aui-font-size-12">QQ</div>
+                    </div>
+                    <div class="aui-col-xs-4">
+                        <img src="../image/share/sina-weibo.png" />
+                        <div class="aui-grid-label aui-font-size-12">微博</div>
+                    </div>
+                    <div class="aui-col-xs-4">
+                        <img src="../image/share/wx.png" />
+                        <div class="aui-grid-label aui-font-size-12">微信</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </footer>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/Ajax.js"></script>
+<script type="text/javascript">
+    var smsVerify;
+    var interval;
+    var i = 60;
+    apiready = function() {
+        api.parseTapmode();
+        $api.one($api.byId('yzm'), 'click', function() {
+            sms();
+        });
+        smsVerify = api.require('smsVerify');
+        smsVerify.register(function(ret, err) {
+            if (ret.status) {
+                //api.alert({msg: '注册成功'});
+            } else {
+                msg(err.code + ' 注册失败');
+            }
+        });
+    }
+
+    function sms() {
+        $api.removeCls($api.byId('yzmarea'), 'aui-label-info');
+        smsVerify.sms({
+            phone: $api.byId('username').value,
+            country: "86"
+        }, function(ret, err) {
+            if (ret.status) {
+                if (ret.smart == true) { // 安卓版特有功能 智能验证
+                  DotAjax('api/menber/login?phone='+$api.byId('username').value,function(ret){
+                    $api.setStorage('loginmodel', ret);
+                    refreshMy();//更新我的页面
+                    api.closeWin();
+                  });
+                } else {
+                    msg("短信验证码成已经发送!");
+                }
+            } else {
+                msg(err.code + ' ' + err.msg);
+            }
+        });
+        interval = setInterval(resetsms, 1000);
+    }
+    function resetsms() {
+        var info = i-- + ' s';
+        if (i < 9)
+            info += " ";
+        $api.text($api.byId('yzm'), i-- + 's');
+        if (i == 0) {
+            clearInterval(interval);
+            $api.addCls($api.byId('yzmarea'), 'aui-label-info');
+            $api.text($api.byId('yzm'), '获取验证码');
+            i = 60;
+            $api.one($api.byId('yzm'), 'click', function() {
+                sms();
+            });
+        }
+    }
+
+    function verify() {
+        smsVerify.verify({
+            phone: $api.byId('username').value,
+            country: "86",
+            code: $api.byId('yzmpwd').value
+        }, function(ret, err) {
+            if (ret.status) {
+                //登陆成功代码
+                DotAjax('api/menber/login?phone='+$api.byId('username').value,function(ret){
+                  $api.setStorage('loginmodel', ret);
+                  refreshMy();//更新我的页面
+                  api.closeWin();
+                });
+            } else {
+                  msg(err.code + ' ' + err.msg);
+            }
+        });
+    }
+</script>
+
+</html>

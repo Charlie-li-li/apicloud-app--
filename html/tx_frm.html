@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>收益提现</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" />
+    <style>
+  .aui-card-list-header{
+    font-size:14px;
+  }
+  .aui-card-list-content-padded{
+    font-size:12px;
+  }
+  .title {
+      margin-top: 0px;
+      padding-top: 15px;
+      text-align: center;
+      background-color: #ffffff;
+      padding-bottom: 10px;
+  }
+
+  .title h4 {
+      font-weight: bold;
+      font-family: "微软雅黑";
+      color: #696969;
+      font-size: 15px;
+  }
+
+  .title h4 span {
+      font-weight: 200;
+  }
+
+  .title p {
+      font-size: 12px;
+      line-height: 23px;
+      text-align: left;
+      padding: 5px 10px;
+  }
+    </style>
+</head>
+<body>
+  <div id="auiTab" class="aui-bar aui-bar-btn aui-bar-btn-round aui-margin-t-10" style="width:45%;">
+      <div class="aui-bar-btn-item aui-active">收益提现</div>
+      <div class="aui-bar-btn-item">提现记录</div>
+  </div>
+  <div id="box1">
+    <div class="aui-content aui-margin-b-10 aui-margin-t-10">
+        <ul class="aui-list aui-form-list">
+            <li class="aui-list-header">输入您要提现的金额</li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label-icon">
+                        <i class="fa fa-paypal"></i>
+                    </div>
+                    <div class="aui-list-item-input">
+                        <input type="number" placeholder="100.00">
+                    </div>
+                </div>
+            </li>
+          </ul>
+        </div>
+        <div class="title">
+            <h4><span>美日App友情提示</span></h4>
+            <p><span class="aui-text-danger">亲:</span>您的现金可以用于<span class="aui-text-primary">鼎力支持</span>您所欣赏的美客拍摄的写真或者视频,
+              现金会<span class="aui-text-warning">1:1</span>转换为美客App<span class="aui-text-info">等值积分</span>,积分可以在任意一家美日App<span class="aui-text-primary">友盟店铺</span>直接当现金以<span class="aui-text-warning">1:1</span>付款消费,或者您也可以在美日App<span class="aui-text-primary">积分商城</span>愉快购物消费!</p>
+        </div>
+        <footer class="aui-bar aui-bar-tab aui-margin-t-15">
+            <div class="aui-bar-tab-item aui-bg-info aui-text-white" tapmode onclick="tx()" style="width: auto;">立即提现</div>
+        </footer>
+  </div>
+  <div style="display:none;" class="aui-margin-t-10" id="box2">
+    <section class="aui-content">
+        <div class="aui-card-list">
+            <div class="aui-card-list-header">
+                <div><i class="aui-iconfont aui-icon-my aui-text-danger"></i>
+                  <span class="aui-text-danger aui-font-size-14"> 最近提现消费</span>
+                </div>
+                <i class="aui-iconfont aui-icon-more"></i>
+            </div>
+            <div class="aui-card-list-content">
+                <ul class="aui-list aui-media-list">
+                    <li class="aui-list-item aui-list-item-middle">
+                        <div class="aui-media-list-item-inner">
+                            <div class="aui-list-item-media" style="width: 3rem;">
+                                <img src="../image/temp/d83cc3c9aa165fc4e2861c1bb611cc67_header_l.jpg" class="aui-img-round">
+                            </div>
+                            <div class="aui-list-item-inner aui-list-item-arrow">
+                                <div class="aui-list-item-text">
+                                    <div class="aui-list-item-title aui-font-size-14">
+                                      <span class="aui-label aui-label-success aui-margin-l-5 aui-margin-b-5">消费</span>
+                                      中影星美电影院</div>
+                                    <div class="aui-list-item-right">2018-5-9 08:00</div>
+                                </div>
+                                <div class="aui-list-item-text aui-font-size-12">
+                                    消费10元
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item aui-list-item-middle">
+                        <div class="aui-media-list-item-inner">
+                            <div class="aui-list-item-media" style="width: 3rem;">
+                                <img src="../image/temp/d83cc3c9aa165fc4e2861c1bb611cc67_header_l.jpg" class="aui-img-round">
+                            </div>
+                            <div class="aui-list-item-inner aui-list-item-arrow">
+                                <div class="aui-list-item-text">
+                                    <div class="aui-list-item-title aui-font-size-14">
+                                      <span class="aui-label aui-label-danger aui-margin-l-5 aui-margin-b-5">提现</span>
+                                      现金提现</div>
+                                    <div class="aui-list-item-right">2018-5-9 08:00</div>
+                                </div>
+                                <div class="aui-list-item-text aui-font-size-12">
+                                    提现120元
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="aui-list-item aui-list-item-middle">
+                        <div class="aui-media-list-item-inner">
+                            <div class="aui-list-item-media" style="width: 3rem;">
+                                <img src="../image/liulangnan.png" class="aui-img-round">
+                            </div>
+                            <div class="aui-list-item-inner aui-list-item-arrow">
+                                <div class="aui-list-item-text">
+                                    <div class="aui-list-item-title aui-font-size-14">
+                                      <span class="aui-label aui-label-success aui-margin-l-5 aui-margin-b-5">消费</span>
+                                      大润发超市</div>
+                                    <div class="aui-list-item-right">2018-5-9 13:07</div>
+                                </div>
+                                <div class="aui-list-item-text aui-font-size-12">
+                                    消费100元
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="aui-card-list-footer aui-text-center aui-font-size-14">
+                查看更多
+            </div>
+        </div>
+    </section>
+  </div>
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript" src="../script/aui-tab.js"></script>
+<script type="text/javascript">
+    apiready = function () {
+        api.parseTapmode();
+    }
+    var tab = new auiTab({
+        element:document.getElementById("auiTab"),
+        repeatClick:true
+    },function(ret){
+      if (ret) {
+          for (var i = 1; i <= 2; i++) {
+              if (i == ret.index)
+              {
+                document.getElementById("box" + i).style.display = "block";
+              }
+              else
+              {
+                document.getElementById("box" + i).style.display = "none";
+              }
+          }
+      }
+    });
+
+    function tx(){
+      var jsfun = 'refresh();';
+      api.execScript({
+          name: 'main',
+          frameName: 'index_frm',
+          script: jsfun
+      });
+    }
+</script>
+</html>

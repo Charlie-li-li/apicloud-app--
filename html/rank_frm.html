@@ -1,0 +1,224 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>排行榜</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/vip.css" />
+    <style>
+        html,
+        body {
+            background-color: #FAFAFA;
+        }
+        /*tab*/
+
+        .aui-tab .aui-tab-item {
+            color: #F0AD4E;
+        }
+        /*tab选中时样式*/
+
+        .aui-tab-item.aui-active {
+            color: #EC971F;
+            border-bottom: 2px solid #EC971F;
+        }
+
+        .media-body {
+            font-size: 12px;
+            margin-top: 8px;
+            color: #333;
+            text-align: center;
+        }
+
+        .oa-contact-avatar {
+            padding: 5px;
+            margin-top: 5px;
+        }
+
+        .oa-contact-avatar img {
+            border-radius: 50%;
+            margin: auto;
+        }
+
+        .mui-media {
+            position: relative;
+        }
+
+        .aui-list-item.wechat-top {
+            background-color: #f3f3f7;
+        }
+
+        .aui-list .wechat-avatar {
+            width: 3rem;
+        }
+
+        .wechat-avatar,
+        .wechat-avatar>img {
+            border-radius: 50%;
+        }
+
+        .aui-list .aui-list-item-inner {
+            font-size: 12px;
+        }
+
+        .aui-list .aui-list-item-title {
+            font-size: 14px;
+        }
+
+        .aui-tab {
+            width: 100%;
+            position: fixed;
+            z-index: 999;
+        }
+
+        .aui-content {
+            padding-top: 42px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="aui-tab" id="tab">
+        <div class="aui-tab-item aui-active">热门</div>
+        <div class="aui-tab-item">关注</div>
+        <div class="aui-tab-item">收益</div>
+        <div class="aui-tab-item">贡献</div>
+    </div>
+    <div id="rlist">
+        <ranklist v-bind:phlist="phlist" v-bind:index="1" v-bind:current="current"></ranklist>
+        <ranklist v-bind:phlist="phlist2" v-bind:index="2" v-bind:current="current"></ranklist>
+        <ranklist v-bind:phlist="phlist3" v-bind:index="3" v-bind:current="current"></ranklist>
+        <ranklist v-bind:phlist="phlist4" v-bind:index="4" v-bind:current="current"></ranklist>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/aui-tab.js"></script>
+<script type="text/javascript" src="../script/vue.js"></script>
+<script type="text/javascript" src="../script/Ajax.js"></script>
+<script type="text/javascript">
+    var app;
+    apiready = function() {
+        api.parseTapmode();
+        DotAjax('api/mk/gzlist',function(ret){
+          app = new Vue({
+              el: '#rlist',
+              data: {
+                  current:1,
+                  phlist: ret,
+                  phlist2:ret,
+                  phlist3:ret,
+                  phlist4:ret
+              }
+          })
+        })
+    }
+    var tab = new auiTab({
+        element: document.getElementById("tab"),
+    }, function(ret) {
+        console.log(ret.index)
+        app.current=ret.index;
+    });
+    Vue.component('ranklist', {
+        props: ['phlist','index','current'],
+        template: `
+      <div v-show="index==current" :id="'tab'+index" class="aui-content">
+      <div tapmode @click="openWin('mmdetail_win',phlist[0])" style="background-color:#EEB4B4;" class="aui-row oa-contact-avatar">
+          <div class="media aui-col-xs-12">
+              <img width="60" :src="phlist[0]._faceurl" />
+              <div class="media-body">{{phlist[0]._nick}}{{index}}</div>
+          </div>
+      </div>
+      <div tapmode @click="openWin('mmdetail_win',phlist[1])" style="background-color:#B2DFEE;" class="aui-row oa-contact-avatar">
+          <div class="media mui-col-xs-12">
+              <img width="60" :src="phlist[1]._faceurl" />
+              <div class="media-body">{{phlist[1]._nick}}</div>
+          </div>
+      </div>
+      <div tapmode @click="openWin('mmdetail_win',phlist[2])" style="background-color:#FFEBCD;" class="aui-row oa-contact-avatar">
+          <div class="media mui-col-xs-12">
+              <img width="60" :src="phlist[2]._faceurl" />
+              <div class="media-body">{{phlist[2]._nick}}</div>
+          </div>
+      </div>
+      <ul style="margin-top: 5px;" class="aui-list aui-media-list">
+          <li v-for="item in phlist.slice(3)" class="aui-list-item aui-list-item-middle">
+              <div tapmode @click="openWin('mmdetail_win',item)" class="aui-media-list-item-inner">
+                  <div class="aui-list-item-media wechat-avatar">
+                      <img :src="item._faceurl" />
+                  </div>
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-text">
+                          <div class="aui-list-item-title">{{item._nick}}</div>
+                          <div class="aui-list-item-right">{{ diaplayTime(item._adddate) }}</div>
+                      </div>
+                      <div class="aui-list-item-text aui-font-size-12">
+                          已被 {{item._gznum}} 人关注
+                      </div>
+                  </div>
+              </div>
+          </li>
+      </ul>
+      </div>
+      `,
+        methods: {
+            diaplayTime: function(data) {
+                var str = data;
+                //将字符串转换成时间格式
+                var timePublish = new Date(str);
+                var timeNow = new Date();
+                var minute = 1000 * 60;
+                var hour = minute * 60;
+                var day = hour * 24;
+                var month = day * 30;
+                var diffValue = timeNow - timePublish;
+                var diffMonth = diffValue / month;
+                var diffWeek = diffValue / (7 * day);
+                var diffDay = diffValue / day;
+                var diffHour = diffValue / hour;
+                var diffMinute = diffValue / minute;
+
+                if (diffValue < 0) {
+                    alert("错误时间");
+                } else if (diffMonth > 3) {
+                    result = timePublish.getFullYear() + "-";
+                    result += timePublish.getMonth() + "-";
+                    result += timePublish.getDate();
+                } else if (diffMonth > 1) {
+                    result = parseInt(diffMonth) + "月前";
+                } else if (diffWeek > 1) {
+                    result = parseInt(diffWeek) + "周前";
+                } else if (diffDay > 1) {
+                    result = parseInt(diffDay) + "天前";
+                } else if (diffHour > 1) {
+                    result = parseInt(diffHour) + "小时前";
+                } else if (diffMinute > 1) {
+                    result = parseInt(diffMinute) + "分钟前";
+                } else {
+                    result = "刚刚登录";
+                }
+                return result;
+            },
+            openWin: function(winName, dt) {
+                var delay = 0;
+                if (api.systemType != 'ios') {
+                    delay = 300;
+                }
+                api.openWin({
+                    name: '' + winName + '',
+                    url: '' + winName + '.html',
+                    bounces: false,
+                    delay: delay,
+                    slidBackEnabled: true,
+                    vScrollBarEnabled: false,
+                    pageParam: {
+                        dt: dt
+                    }
+                });
+            }
+        }
+    })
+</script>
+
+</html>
