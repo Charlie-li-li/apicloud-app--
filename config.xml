@@ -1,0 +1,69 @@
+<widget id="A6070162011656" version="0.0.1">
+
+    <name>美日</name>
+
+    <description>
+
+        一个美的展示的平台,一个支持美不用花钱的平台,一个具有独特模式的交互式电商平台.
+
+    </description>
+
+    <author email="developer@apicloud.com" href="http://www.apicloud.com">
+
+        向可可
+
+    </author>
+
+    <content src="index.html"/>
+
+    <access origin="*"/>
+
+    <preference name="pageBounce" value="false"/>
+
+    <preference name="appBackground" value="rgba(0,0,0,0.0)"/>
+
+    <preference name="windowBackground" value="rgba(0,0,0,0.0)"/>
+
+    <preference name="frameBackgroundColor" value="rgba(0,0,0,0.0)"/>
+
+    <preference name="hScrollBarEnabled" value="false"/>
+
+    <preference name="vScrollBarEnabled" value="false"/>
+
+    <preference name="autoLaunch" value="true"/>
+
+    <preference name="fullScreen" value="false"/>
+
+    <preference name="autoUpdate" value="true"/>
+
+    <preference name="smartUpdate" value="true"/>
+
+    <preference name="debug" value="true"/>
+
+    <preference name="statusBarAppearance" value="true"/>
+
+    <permission name="readPhoneState"/>
+
+    <permission name="camera"/>
+
+    <permission name="record"/>
+
+    <permission name="location"/>
+
+    <permission name="fileSystem"/>
+
+    <permission name="internet"/>
+
+    <permission name="bootCompleted"/>
+
+    <permission name="hardware"/>
+    <feature name="aliPay">
+      <param name="urlScheme" value="AliPayA6929545866829"/>
+    </feature>
+    <feature name="smsVerify">
+        <param name="android_app_key" value="25a1f9b8243aa"/>
+        <param name="android_app_secret" value="6a01a4d06431c97d097decd3c0096436"/>
+        <param name="ios_app_key" value="25e6ca0900d3b"/>
+        <param name="ios_app_secret" value="fdbf34aade549a8980a040a07d78e5df"/>
+    </feature>
+</widget>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<security>
+<item name="aliPay_partner" value="2088421986439611"/>
+<item name="aliPay_seller" value="2270733441@qq.com"/>
+<item name="aliPay_rsaPriKey" value="MIICXAIBAAKBgQCykuOCxcIcnlUEIOgORqSSMFhyK3wPWu8ml3kytv+wihPWc7XiogEs7fIodjfhpXD5i4e8wwaJykFoDoC4hti7oPFKfMUmaJc0u59qg7PjOU5RTJni395kbhbNwd76ygNg+fW1HyOoy374djV15qaJNP06jDgRMZ15Q+rB6fu01wIDAQABAoGBAKNcgUl3BJcNuZSnTeMReShLlf4MDdg2RiW12KguhUbJalB7Vl9X+V9S5n9hdsm0gd+oZ6qld2vCXYeGDPfCVK3507/5XuKByJYKCWvqE8jBYYzgfIkoNbukpxJ50vDhuPr9l90/2uXRu9akMQdYfJYh76XImQYXlZgX06kI9h/hAkEA2VjApq32lLPC46bexuUnD9GvQ0aPaJRXzOUZoMRjqO+nHwi5/yyU7Q/vZ+K9x36YK8o/A/SK22rTinWpUv9rnwJBANJU50Zeh44WXDfOxwpkxvOU8eSHl3US2SHuB19LNHKzqpeK2qhNwBB4aRqWegNidnPHHdPQCXj3DIV+SAJTq8kCQDRkdpw3VzdlVdd2xEEBwDbJ/wuimLNG/xs/JrxgWv3AN3L9sYhXgNbcfoN2XvUWCSyVJjeX3VkjGTdJQbXmKFUCQBi5klZbVmQFjOGilRNLtXd80tKifdNtW8j5SjSRiqDRLgSSdhHC0gkdnn1Zow4yzOnfRkpX8kUeBYLLzXs4isECQAYIwPlRipoYj5pvP+S2aj+Reh4Vw5Ra9vDF7bP/k2kyNq0oXZa+ZoZMPtXiMcKgz9rKV2icUotWrFvJ2mnm+I8="/>
+<item name="aliPay_rsaPubKey" value="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRAFljhNhgPdyPuBV64bfQNN1PjbCzkIM6qRdKBoLPXmKKMiFYnkd6rAoprih3/PrQEB/VsW8OoM8fxn67UDYuyBTqA23MML9q1+ilIZwBC2AQ2UBVOrFXfFl75p6/B5KsiNG9zpgmLCUYuLkxpLQIDAQAB"/>
+<item name="aliPay_notifyURL" value="http://mr.hackcoll.com"/>
+</security>
